@@ -1,0 +1,142 @@
+/* style.css para StreetMoto */
+
+:root {
+  --color-primario: #070ac2;
+  --color-secundario: #000000;
+  --color-claro: #ffffff;
+  --fuente-principal: 'Open Sans', sans-serif;
+  --fuente-secundaria: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #000000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fuente-secundaria);
+}
+
+.navbar a.active,
+.navbar .nav-link.active {
+  font-weight: bold;
+  color: var(--color-primario) !important;
+  text-decoration: underline;
+}
+
+/* Header */
+header {
+  background-color: var(--color-secundario);
+}
+
+header h1 {
+  font-family: var(--fuente-secundaria);
+  font-weight: 700;
+}
+
+/* Secciones */
+section {
+  padding: 60px 0;
+}
+
+section h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: var(--color-secundario);
+}
+
+.card {
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn-primary {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.btn-primary:hover {
+  background-color: #0026ff;
+  border-color: #0026ff;
+}
+
+footer {
+  background-color: var(--color-secundario);
+  color: var(--color-claro);
+}
+
+/* Galería */
+.gallery-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.05);
+}
+
+/* Formulario de contacto */
+form input,
+form textarea {
+  border: 1px solid #ced4da;
+}
+
+form button[type=submit] {
+  background-color: var(--color-primario);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+form button[type=submit]:hover {
+  background-color: #0112fa;
+}
+.formulario-seccion {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+}
+
+.formulario-seccion h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: var(--color-secundario);
+}
+
+.formulario-seccion input,
+.formulario-seccion textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.formulario-seccion button {
+  background-color: var(--color-primario);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.formulario-seccion button:hover {
+  background-color: #0026ff;
+}

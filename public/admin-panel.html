@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - StreetMoto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <style>
+    .card-panel {
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    .card-panel h3 {
+      color: #0d6efd;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .list-item-label {
+      font-weight: bold;
+      color: #ffffff;
+    }
+    .list-item-content {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body class="bg-dark text-white p-5">
+  <div class="container">
+    <h1 class="mb-5 text-center">Panel de Administración - StreetMoto</h1>
+
+    <section class="mb-5 card-panel">
+      <h3>Mensajes de Contacto</h3>
+      <ul id="listaContactos" class="list-group"></ul>
+    </section>
+
+    <section class="mb-5 card-panel">
+      <h3>Citas Agendadas</h3>
+      <ul id="listaCitas" class="list-group"></ul>
+    </section>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:3002'; // Asegúrate que tu NestJS esté corriendo en este puerto
+
+    async function cargarContactos() {
+      try {
+        const res = await fetch(`${API_URL}/contacto`);
+        if (!res.ok) throw new Error('Error al cargar contactos');
+        const datos = await res.json();
+        const lista = document.getElementById('listaContactos');
+        lista.innerHTML = '';
+        datos.forEach(d => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item bg-dark text-white border-light mb-2';
+          li.innerHTML = `
+            <div><span class="list-item-label">Nombre:</span> <span class="list-item-content">${d.nombre}</span></div>
+            <div><span class="list-item-label">Correo:</span> <span class="list-item-content">${d.email}</span></div>
+            <div><span class="list-item-label">Mensaje:</span> <span class="list-item-content">${d.mensaje}</span></div>
+          `;
+          lista.appendChild(li);
+        });
+      } catch (error) {
+        console.error('Error al obtener contactos:', error);
+      }
+    }
+
+    async function cargarCitas() {
+      try {
+        const res = await fetch(`${API_URL}/citas`);
+        if (!res.ok) throw new Error('Error al cargar citas');
+        const citas = await res.json();
+        const lista = document.getElementById('listaCitas');
+        lista.innerHTML = '';
+        citas.forEach(c => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item bg-dark text-white border-light mb-2';
+          li.innerHTML = `
+            <div><span class="list-item-label">Fecha:</span> <span class="list-item-content">${c.fecha.split('T')[0]}</span></div>
+            <div><span class="list-item-label">Hora:</span> <span class="list-item-content">${c.hora}</span></div>
+            <div><span class="list-item-label">Nombre:</span> <span class="list-item-content">${c.nombre}</span></div>
+            <div><span class="list-item-label">Correo:</span> <span class="list-item-content">${c.email}</span></div>
+          `;
+          lista.appendChild(li);
+        });
+      } catch (error) {
+        console.error('Error al obtener citas:', error);
+      }
+    }
+
+    cargarContactos();
+    cargarCitas();
+  </script>
+</body>
+</html>
